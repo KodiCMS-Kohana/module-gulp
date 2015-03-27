@@ -2,12 +2,13 @@ var util = require('gulp-util');
 var fs = require('fs');
 var _ = require('underscore');
 
-var targetDir = util.env.backend  ? 'cms/media/' : 'public/'
+var targetDir = util.env.backend  ? 'cms/media/' : 'public/';
 
 var config = {
+	isBackend: util.env.backend,
     production: !! util.env.production,
-    assetsDir: targetDir + 'less',
-    cssOutput: targetDir + 'css',
+    assetsDir: targetDir,
+    cssOutput: targetDir + 'css/',
     jsOutput: targetDir + 'js',
     sourcemaps: ! util.env.production,
     bowerDir: 'vendor/bower_components',

@@ -15,7 +15,6 @@ var deletePreviouslyMergedFile = function(path) {
     }
 };
 
-
 /**
  * Figure out which files should be watched, and re-merged.
  *
@@ -24,10 +23,8 @@ var deletePreviouslyMergedFile = function(path) {
  */
 var getFilesToWatch = function(request) {
     var alreadyBeingWatched = config.watchers.default[request.taskName];
-
     return alreadyBeingWatched ? alreadyBeingWatched.concat(request.files) : request.files;
 };
-
 
 /**
  * Create the Gulp task.
@@ -49,7 +46,6 @@ var buildTask = function(request) {
     return config;
 };
 
-
 /**
  * Use Gulp to merge one set of files.
  *
@@ -64,20 +60,19 @@ var mergeFileSet = function(assets, index, request) {
     deletePreviouslyMergedFile(set.outputDir + '/' + set.concatFileName);
 
     return gulp.src(set.files)
-               .pipe(plugins.if(config.sourcemaps, plugins.sourcemaps.init()))
-               .pipe(plugins.concat(set.concatFileName))
-               .pipe(plugins.if(config.production, request.minifier.call(this)))
-               .pipe(plugins.if(config.sourcemaps, plugins.sourcemaps.write('.')))
-               .pipe(gulp.dest(set.outputDir))
-               .on('end', function() {
-                    index++;
+	   .pipe(plugins.if(config.sourcemaps, plugins.sourcemaps.init()))
+	   .pipe(plugins.concat(set.concatFileName))
+	   .pipe(plugins.if(config.production, request.minifier.call(this)))
+	   .pipe(plugins.if(config.sourcemaps, plugins.sourcemaps.write('.')))
+	   .pipe(gulp.dest(set.outputDir))
+	   .on('end', function() {
+			index++;
 
-                    if (assets[index]) {
-                      mergeFileSet(assets, index, request);
-                    }
-               });
+			if (assets[index]) {
+			  mergeFileSet(assets, index, request);
+			}
+	   });
 };
-
 
 module.exports = function(request) {
     return buildTask(request);

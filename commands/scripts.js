@@ -15,7 +15,6 @@ var MergeRequest = require('./src/MergeRequest');
 
 KodiCMS.extend('scripts', function(scripts, outputDir, baseDir) {
     outputDir = outputDir || KodiCMS.config.jsOutput;
-
     return combine(mergeRequest(scripts, outputDir, baseDir));
 });
 

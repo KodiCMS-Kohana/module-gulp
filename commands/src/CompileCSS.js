@@ -2,10 +2,8 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var config = require('kodicms-gulp').config;
 var utilities = require('./Utilities');
-var Notification = require('./Notification');
 
 module.exports = function(options) {
-
     var name = options.compiler.toLowerCase();
 
     var src = utilities.buildGulpSrc(
@@ -25,8 +23,6 @@ module.exports = function(options) {
     };
 
     var onError = function(e) {
-        new Notification().error(e, options.compiler + ' Compilation Failed!');
-
         this.emit('end');
     };
 
@@ -35,8 +31,7 @@ module.exports = function(options) {
             .pipe(plugins.autoprefixer())
             .pipe(plugins.if(config.production, plugins.minifyCss()))
             .pipe(plugins.if(config.sourcemaps, plugins.sourcemaps.write('.')))
-            .pipe(gulp.dest(options.output || config.cssOutput))
-            .pipe(new Notification().message(options.compiler + ' Compiled!'));
+            .pipe(gulp.dest(options.output || config.cssOutput));
     });
 
     config.registerWatcher(
