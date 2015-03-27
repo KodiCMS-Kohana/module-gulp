@@ -45,5 +45,4 @@ module.exports = function(options) {
     );
 
     return config.queueTask(name);
-
 };

@@ -1,14 +1,10 @@
 var KodiCMS = require('kodicms-gulp');
-var compile = require('./commands/CompileCSS');
+var compile = require('./src/CompileCSS');
 
 /*
  |----------------------------------------------------------------
  | Less Compilation Task
  |----------------------------------------------------------------
- |
- | This task will compile your Less, including minification and
- | and auto-prefixing. Less is one of the CSS pre-processors
- | supported by Elixir, along with the Sass CSS processor.
  |
  */
 

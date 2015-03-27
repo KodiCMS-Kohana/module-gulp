@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var _ = require('underscore');
-var config = require('laravel-elixir').config;
+var config = require('kodicms-gulp').config;
 var inSequence = require('run-sequence');
 
 var srcPaths;

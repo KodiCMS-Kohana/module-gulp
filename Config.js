@@ -2,7 +2,7 @@ var util = require('gulp-util');
 var fs = require('fs');
 var _ = require('underscore');
 
-var targetDir = util.env.backend  ? 'cms/media/' : 'public'
+var targetDir = util.env.backend  ? 'cms/media/' : 'public/'
 
 var config = {
     production: !! util.env.production,
@@ -17,6 +17,36 @@ var config = {
     concatenate: { css: [], js: [] }
 };
 
+/**
+ * Designate that the given task should be watched.
+ *
+ * @param {string} task
+ * @param {string} search
+ * @param {string} group
+ */
+config.registerWatcher = function(task, search, group) {
+	group = group || 'default';
+
+	this.watchers[group] = this.watchers[group] || {};
+
+	this.watchers[group][task] = search;
+
+	return this;
+}
+
+/**
+ * Register the given task to be triggered by Gulp.
+ *
+ * @param {string} task
+ */
+config.queueTask = function(task) {
+	if (this.tasks.indexOf(task) == -1)
+	{
+		this.tasks.push(task);
+	}
+
+	return this;
+};
 
 /**
  * Set the default directory paths.

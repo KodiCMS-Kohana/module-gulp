@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var config = require('laravel-elixir').config;
+var config = require('kodicms-gulp').config;
 var plugins = require('gulp-load-plugins')();
 var fs = require('fs');
 

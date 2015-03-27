@@ -1,6 +1,6 @@
 var KodiCMS = require('kodicms-gulp');
-var combine = require('./commands/MergeFiles.js');
-var MergeRequest = require('./commands/MergeRequest');
+var combine = require('./src/MergeFiles.js');
+var MergeRequest = require('./src/MergeRequest');
 
 /*
  |----------------------------------------------------------------
